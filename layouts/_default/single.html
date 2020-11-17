@@ -13,8 +13,12 @@
                     </div>
                 {{ end }}
             </div>
-
-            {{ .Content }}
+            {{ if in .Site.Data.generated .Page.Title}}
+                {{ $path := .Page.Title | printf "%s/%s" "portfolio" | printf "%s" }}
+                {{ partial $path . }}
+            {{else}}
+                {{ .Content }}
+            {{ end }}
         </div>
         <div class="post-footer">
             <div class="info">
